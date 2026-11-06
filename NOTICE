@@ -1,0 +1,32 @@
+Provenance notices
+------------------
+* Pool D of this system was produced by RUNNING the upstream DeepEye-SQL
+  pipeline (https://github.com/HKUSTDial/DeepEye-SQL, MIT License,
+  "Copyright (c) 2026 DeepEye-SQL Team") pinned to commit
+  252ab45a7adf9f88fb93d1ff27ca019d20f0449a, with the following documented
+  adaptations that touch plumbing only, not the algorithm:
+    1. LLM backend swapped to a different OpenAI-compatible model served
+       through an internal gateway (generation config per our model policy).
+    2. Embedding stage pointed at a gateway embedding API instead of the
+       local default model.
+    3. Device: cuda -> cpu (no GPU available on the host).
+    4. Sampling strategy: gateway rejects n>1 per request, so each sample
+       is sent as an independent 1-sample request (identical prompt and
+       temperature; only server-side batching semantics changed).
+    5. One-line robustness patch upstream: llm.ask(..., timeout=600).
+    6. Dependency lock adjustments for the offline environment.
+  Schema linking, value retrieval, generation templates and DeepEye's own
+  answer selection are used exactly as published. Upstream code is NOT
+  redistributed in this repository: reproduce by cloning upstream at the
+  pinned commit and applying the config-level adaptations above.
+* The end-to-end DeepEye-SQL run (adapted, our model) scores 1143/1534 =
+  74.51% on BIRD publisher Dev 20240627 under the official evaluator. The
+  shipped system in this repository (BirdFusion pool P + frozen gold-free
+  selector v16, which consumes DeepEye output only as "Pool D" evidence)
+  scores 1146/1534 = 74.71%. We do not inherit any published DeepEye
+  scores; every number here is measured locally.
+* Candidate corpora used in Pool P are public/historical Text-to-SQL
+  predictions redistributed by their original authors; this repository
+  contains no copies of them and no ground-truth SQL.
+* BIRD benchmark databases and gold SQL are NOT redistributed here; obtain
+  them from the official BIRD release for reproduction.

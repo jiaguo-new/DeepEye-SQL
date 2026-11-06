@@ -1,0 +1,32 @@
+{
+  "models": {"qwen": "qwen3.8-27b"},
+  "channels": [
+    {
+      "name": "qwen_external",
+      "models": {"qwen3.8-27b": "qwen3.8-27b"},
+      "base_url": "http://127.0.0.1:18081/v1",
+      "host_header": "gateway.internal.example",
+      "credential_config": "~/.config/nl2sql/qwen_gateway_current.json"
+    }
+  ],
+  "templates": ["standard", "reread"],
+  "samples_per_template": 2,
+  "temperature": 0.7,
+  "max_tokens": 2048,
+  "reasoning_effort": "medium",
+  "workers": 4,
+  "exec_workers": 4,
+  "exec_timeout_s": 30.0,
+  "max_result_rows": 10000,
+  "sample_values": 3,
+  "database_descriptions": false,
+  "value_hints": false,
+  "literal_corrections": 0,
+  "execution_corrections": 0,
+  "linked_schema_followup": false,
+  "linked_temperatures": [],
+  "train_examples_file": "~/project/nl2sql_harness/datasets/train/fit_train.json",
+  "train_example_count": 8,
+  "train_example_scope": "cross_domain_masked",
+  "train_example_exclude_files": ["~/birdfusion_public_inputs/fit_val_pilot100.json"]
+}

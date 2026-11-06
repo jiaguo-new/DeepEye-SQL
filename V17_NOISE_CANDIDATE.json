@@ -1,0 +1,19 @@
+{
+ "search": "exhaustive depth-4 gold-free rule search on v16 (5491 alt candidates, 18 atoms)",
+ "zero_damage_rules_found": 60,
+ "best": {
+  "comb": [
+   "notinpool",
+   "fewerrow",
+   "1col",
+   "acol>1"
+  ],
+  "fire_n": 2,
+  "rescue": 2,
+  "damage": 0,
+  "halfA": 1,
+  "halfB": 1,
+  "correct_if_adopted": 1148
+ },
+ "verdict": "NOT ADOPTED: fires on only 2 Dev questions; indistinguishable from Dev fitting. Reported for completeness, not shipped."
+}

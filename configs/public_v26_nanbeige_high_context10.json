@@ -1,0 +1,35 @@
+{
+  "models": {
+    "nanbeige": "nanbeige-4.3-33b-q4"
+  },
+  "channels": [
+    {
+      "name": "nanbeige_local_q4",
+      "models": {
+        "nanbeige-4.3-33b-q4": "~/models/Nanbeige4.3-33B-Q4_K_S.gguf"
+      },
+      "base_url": "http://127.0.0.1:8080/v1",
+      "credential_config": "~/.config/nanbeige_local.json"
+    }
+  ],
+  "templates": ["standard", "reread"],
+  "samples_per_template": 2,
+  "temperature": 0.7,
+  "max_tokens": 2048,
+  "reasoning_effort": "high",
+  "workers": 1,
+  "exec_workers": 2,
+  "exec_timeout_s": 30.0,
+  "max_result_rows": 10000,
+  "sample_values": 3,
+  "database_descriptions": false,
+  "value_hints": false,
+  "literal_corrections": 0,
+  "execution_corrections": 0,
+  "linked_schema_followup": false,
+  "linked_temperatures": [],
+  "train_examples_file": "~/birdfusion_public_inputs/fit_train.json",
+  "train_example_count": 3,
+  "train_example_scope": "same_db",
+  "train_example_exclude_files": ["~/birdfusion_public_inputs/minidev100_pilot.json"]
+}

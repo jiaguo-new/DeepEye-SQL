@@ -1,0 +1,26 @@
+{
+  "models": {"qwen": "qwen3.8-27b"},
+  "channels": [
+    {
+      "name": "qwen52_local_q4",
+      "models": {"qwen3.8-27b": "qwen3.8-27b"},
+      "base_url": "http://127.0.0.1:18082/v1",
+      "api_key": "local"
+    }
+  ],
+  "templates": ["standard"],
+  "samples_per_template": 4,
+  "temperatures": [0.2, 0.4, 0.6, 0.8],
+  "top_p": 0.95,
+  "max_tokens": 4096,
+  "reasoning_effort": "medium",
+  "workers": 1,
+  "exec_workers": 8,
+  "exec_timeout_s": 30.0,
+  "max_result_rows": 10000,
+  "sample_values": 3,
+  "value_hints": true,
+  "value_hint_max_values": 400,
+  "value_hint_max_length": 60,
+  "value_hint_topk": 14
+}

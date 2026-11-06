@@ -1,0 +1,12 @@
+# Direct public inference pipeline: zero third-party runtime dependencies
+# (Python >= 3.11: tomllib, dataclasses, sqlite3, urllib, concurrent.futures).
+#
+# Official BIRD evaluator (rescoring path):
+func-timeout>=4.3.5
+psycopg2-binary>=2.9
+PyMySQL>=1.0
+#
+# Optional audit tools (src/birdfusion/count_distinct_selector.py,
+# src/birdfusion/group_threshold_check.py — NOT used by the shipped selector):
+#   pip install sqlglot
+# Their unit tests auto-skip when sqlglot is absent.

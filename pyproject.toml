@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "birdfusion-public"
+version = "1.0.0"
+description = "Public-only dual-model BIRD inference with execution consensus"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+evaluation = ["func-timeout>=4.3.5", "psycopg2-binary>=2.9", "PyMySQL>=1.0"]
+research-count-distinct = ["sqlglot==30.27.0"]
+
+[project.scripts]
+birdfusion = "birdfusion.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
