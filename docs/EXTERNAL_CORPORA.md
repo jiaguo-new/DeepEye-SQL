@@ -21,6 +21,14 @@ README "Honest limits".
 
 ## Measured slices (2026-11-06, post-freeze-lift)
 
+* **Own-pool-only arm** (P2-1 core): rebuilt from `v19` run candidates only (4/question, our
+  Qwen3.8-27B generations; zero public corpora, zero Pool D/B), same protocol (fresh official
+  evaluator, pinned current gold, 30 s): **1067 = 69.56%** (75.14/61.85/58.62).
+  External-evidence contribution = 1146 − 1067 = **+79 questions (+5.15 pp)**, decomposed:
+  nine public corpora inside Pool P ≈ +72 (1067 → 1139), upstream-B tie-break rules D/E/F = +7.
+  Interpretation: the headline is dominated by our own generator (69.56 of 74.71), but the
+  external corpora demonstrably carry Dev-set tuning we inherit as candidate diversity —
+  the audit's generalization caveat stands, quantified.
 * **Pool-D / upstream-B rule-chain marginal value** — fresh official rescore of the
   immediate pre-D/E/F baseline `shipping_v15` (d4d14758): **1139 = 74.32%**
   (78.92/68.75/62.76) vs v16 1146 = 74.71%. Net contribution of the three

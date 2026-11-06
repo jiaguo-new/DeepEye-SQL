@@ -9,6 +9,7 @@ import unittest
 from unittest import mock
 
 from birdfusion.budget_ledger import BudgetExhausted, BudgetLedger, Claim, LedgerError
+from _platform import safe_symlink as _safe_symlink
 
 
 def digest(value):
@@ -125,7 +126,7 @@ class BudgetLedgerTests(unittest.TestCase):
             BudgetLedger.open(self.path, SCOPE, 2)
         self.path.chmod(0o600)
         link = self.path.parent / "link"
-        link.symlink_to(self.path)
+        _safe_symlink(link, self.path)
         with self.assertRaises(LedgerError):
             BudgetLedger.open(link, SCOPE, 2)
         db = self.ledger._connect()

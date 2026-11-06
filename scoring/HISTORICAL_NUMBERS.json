@@ -42,6 +42,12 @@
    "claimed": "legacy internal note only",
    "official_recheck_20261106": "1139 (74.32%) layers 78.92/68.75/62.76, current pinned gold, fresh evaluator",
    "status": "verified fresh; P2-1 slice: Pool-D rules D/E/F net = +7 (v15->v16)"
+  },
+  {
+   "artifact": "own-pool-only ablation arm (P2-1)",
+   "claimed": "n/a (new measurement)",
+   "official_recheck_20261106": "1067 (69.56%) layers 75.14/61.85/58.62 current pinned gold",
+   "status": "measured; = external-evidence decomposition base arm"
   }
  ]
 }

@@ -8,6 +8,7 @@ import unittest
 from unittest import mock
 
 from birdfusion.request_ledger import Claim, LedgerError, RequestLedger
+from _platform import safe_symlink as _safe_symlink
 
 
 def digest(value):
@@ -113,7 +114,7 @@ class RequestLedgerTests(unittest.TestCase):
             RequestLedger.open(self.path)
         self.path.chmod(0o600)
         link = self.path.parent / "link"
-        link.symlink_to(self.path)
+        _safe_symlink(link, self.path)
         with self.assertRaises(LedgerError):
             RequestLedger.open(link)
         db = self.ledger._connect()

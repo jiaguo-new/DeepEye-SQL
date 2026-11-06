@@ -14,6 +14,7 @@ rule B) — see `docs/EXTERNAL_CORPORA.md` and `docs/AUDIT_RESPONSE_20261106.md`
 | Pool P generation alone (Qwen3.8-27B, 4 candidates/question, zero-shot; v19 final) | 1063 = 69.30% — **verified** (fresh official rescore 2026-11-06; audit's 992 traced to a pre-2024-06-27 gold, see response doc) |
 | Upstream **DeepEye-SQL published predictions** (git-tracked artifact @252ab45a, SHA `0d073da4`; *not* a local rerun of their selector — see docs/DEEPEYE_ADAPTATIONS.md) | 1141 = 74.38% — **verified** (fresh rescore on current official gold; paper claims 74.5) |
 | Pool-D evidence rules (D+E+F) marginal value over v15 (fresh, current gold) | 1139 → 1146: **+7 net** (74.32% → 74.71%) |
+| **Own-pool-only arm** (v19 4-candidate consensus + in-pool empty-repair; zero external Dev predictions) | **1067 = 69.56%** (75.14/61.85/58.62) — full P2-1 ablation slice, fresh official rescore 2026-11-06 |
 | **Shipped: BirdFusion pools + frozen gold-free selector v16** | **1146 = 74.71%** (simple 79.46 / moderate 68.97 / challenging 62.76) — **verified 4x fresh + byte-reproducible from `data/`** |
 
 ## How it works

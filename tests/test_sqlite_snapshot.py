@@ -9,6 +9,7 @@ import unittest
 from unittest import mock
 
 from birdfusion.sqlite_snapshot import create_snapshot
+from _platform import safe_symlink as _safe_symlink
 
 
 class SQLiteSnapshotTests(unittest.TestCase):
@@ -65,7 +66,7 @@ class SQLiteSnapshotTests(unittest.TestCase):
                 create_snapshot(source, destination)
             self.assertEqual(destination.read_bytes(), b"keep me")
             link = root / "link.sqlite"
-            link.symlink_to(root / "missing.sqlite")
+            _safe_symlink(link, root / "missing.sqlite")
             with self.assertRaises(FileExistsError):
                 create_snapshot(source, link)
             self.assertTrue(link.is_symlink())
@@ -79,7 +80,7 @@ class SQLiteSnapshotTests(unittest.TestCase):
             target = root / "target"
             target.mkdir()
             alias = root / "alias"
-            alias.symlink_to(target, target_is_directory=True)
+            _safe_symlink(alias, target, target_is_directory=True)
             manifest = create_snapshot(source, alias / "snapshot.sqlite")
             self.assertEqual(manifest.snapshot_path, str(target / "snapshot.sqlite"))
             self.assertEqual(manifest.snapshot_sha256,

@@ -11,6 +11,7 @@ from unittest import mock
 from birdfusion.execution_cache import CacheIdentity, Candidate, ExecutionCache, verify_snapshot
 from birdfusion.sql_exec import ExecResult, execute_sql
 from birdfusion.sqlite_snapshot import create_snapshot
+from _platform import safe_symlink as _safe_symlink
 
 
 class ExecutionCacheTests(unittest.TestCase):
@@ -94,11 +95,11 @@ class ExecutionCacheTests(unittest.TestCase):
             self.assertIsNone(self.cache.load(self.identity, deterministic_authorized=True))
             path.unlink()
         link = self.root / "link.sqlite"
-        link.symlink_to(snapshot)
+        _safe_symlink(link, snapshot)
         with self.assertRaises(ValueError):
             verify_snapshot(replace(self.manifest, snapshot_path=str(link)))
         parent_link = self.root / "alias"
-        parent_link.symlink_to(self.root, target_is_directory=True)
+        _safe_symlink(parent_link, self.root, target_is_directory=True)
         with self.assertRaises(ValueError):
             verify_snapshot(replace(self.manifest, snapshot_path=str(parent_link / snapshot.name)))
 
@@ -129,7 +130,7 @@ class ExecutionCacheTests(unittest.TestCase):
                 path.write_bytes(data)
                 self.assertIsNone(self.cache.load(self.identity, deterministic_authorized=True))
         path.unlink()
-        path.symlink_to(self.root / "missing")
+        _safe_symlink(path, self.root / "missing")
         self.assertIsNone(self.cache.load(self.identity, deterministic_authorized=True))
 
     def test_atomic_replace_failure_keeps_previous_file(self):
