@@ -1,8 +1,11 @@
-# Innovation Search Ledger — post-1146 (2026-11-06, rounds 27–41)
+# Innovation Search Ledger — post-1146 (2026-11-06, rounds 27–56)
 
 Complete accounting of every measured route tried after the shipped **v16 = 1146 / 74.71%**.
 All selection decisions are gold-free; Dev gold appears only in post-hoc measurement blocks.
 Official numbers below come from the official BIRD evaluator (serial runs, one instance).
+
+## Tally
+17 numbered negative closures + 1 positive (D2) = 18 axes examined. (Earlier round reports of "16 negative" undercounted by one; bookkeeping correction only, no measurement changed.)
 
 ## Scoreboard of record
 | system | official | note |
