@@ -11,12 +11,39 @@ Rule chain over the v3 baseline (v3 is fully reproducible from ROUND4 artifacts)
   E    DeepEye tiebreak (de_maj==0, ncl>=4, rows<)      10
   F    DeepEye tiebreak, union of 5 gold-free gates     54
 """
-import json, hashlib, sqlite3, sys
+import json, hashlib, os, sqlite3, sys
 from pathlib import Path
 from func_timeout import func_timeout
 from concurrent.futures import ThreadPoolExecutor
 BASE = Path(__file__).resolve().parent
-DEV = Path('~/bird_dev_check/dev_20240627')
+DEV = Path(os.environ.get('BIRDFUSION_DEV_ROOT', '~/bird_dev_check/dev_20240627')).expanduser()
+QWEN = Path(os.environ.get('BIRDFUSION_DEEPEYE_PRED', '~/bird_dev_check/qwen3.6-27b.json')).expanduser()
+DEL = '\t----- bird -----'
+REQUIRED_ARTIFACTS = [
+    'shipping_v15_predicted_sql.json',
+    'unified_pool.json',
+    'DE12_POOL.json',
+    'shipping_v16_predicted_sql.json',
+]
+_missing = [a for a in REQUIRED_ARTIFACTS if not (BASE / a).exists()]
+if _missing:
+    sys.exit(
+        'missing frozen artifacts (see docs/COMPLIANCE_REMEDIATION_20261106.md P1-2):\n  '
+        + '\n  '.join(_missing)
+        + '\nThese pools are not distributed in this repository; obtain them from the '
+          'release attachments and place them next to this script before re-running.'
+    )
+if not (DEV / 'dev.json').exists():
+    sys.exit(
+        f'BIRD dev data not found at {DEV}.\n'
+        'Set BIRDFUSION_DEV_ROOT to a directory containing dev.json and '
+        'dev_databases/<db_id>/<db_id>.sqlite from the official BIRD release.'
+    )
+if not QWEN.exists():
+    sys.exit(
+        f'DeepEye final SQL not found at {QWEN}.\n'
+        'Set BIRDFUSION_DEEPEYE_PRED to the DeepEye-SQL pipeline final predictions JSON.'
+    )
 DEL = '\t----- bird -----'
 def n(s): return ' '.join(s.split(DEL)[0].split())
 dev = {str(d['question_id']): d for d in json.load(open(DEV/'dev.json'))}
@@ -32,7 +59,7 @@ def main():
     V15 = json.load(open(BASE/'shipping_v15_predicted_sql.json'))
     U = json.load(open(BASE/'unified_pool.json'))
     DE12 = json.load(open(BASE/'DE12_POOL.json'))
-    DE = json.load(open('~/bird_dev_check/qwen3.6-27b.json'))
+    DE = json.load(open(QWEN))
     RULES = {
      'F1': lambda f: not f['s_in_pool'] and f['dm']==0 and f['v_nfam']<=1,
      'F2': lambda f: f['dm']>f['am'] and f['v_cols']==f['de_cols'] and f['v_nfam']<=1,

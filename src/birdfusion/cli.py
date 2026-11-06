@@ -39,6 +39,18 @@ def main(argv=None):
     validate.add_argument("--input", required=True)
     validate.add_argument("--expected-count", type=int, default=None)
 
+    fusion = sub.add_parser("fusion", help="gold-free fusion selection over a candidate pool")
+    fusion.add_argument("--manifest", required=True,
+                        help="JSON: {arms_file: path, prediction_files: {family: path}}")
+    fusion.add_argument("--database-root", required=True)
+    fusion.add_argument("--work", required=True)
+    fusion.add_argument("--output", required=True, help="official-format prediction output")
+    fusion.add_argument("--anchor", default="deepeye")
+    fusion.add_argument("--k-switch", type=int, default=4)
+    fusion.add_argument("--lead", type=int, default=2)
+    fusion.add_argument("--workers", type=int, default=14)
+    fusion.add_argument("--timeout-s", type=int, default=30)
+
     audit = sub.add_parser("audit", help="audit persisted inference artifacts")
     audit.add_argument("--work", required=True)
 
@@ -73,6 +85,29 @@ def main(argv=None):
         report = validate_bird_predictions(args.predictions, args.expected_count or len(rows),
                                            [str(r["question_id"]) for r in rows])
         print(json.dumps(report), flush=True)
+    elif args.command == "fusion":
+        from . import fusion
+        from collections import Counter
+        work = Path(args.work)
+        work.mkdir(parents=True, exist_ok=True)
+        manifest = json.loads(Path(args.manifest).read_text(encoding="utf-8"))
+        pool_data = fusion.build_pool(manifest, work)
+        n = sum(len(v) for v in pool_data["pool"].values())
+        cache = fusion.execute_pool(pool_data, Path(args.database_root), work,
+                                    workers=args.workers, timeout_s=args.timeout_s)
+        predictions, meta = fusion.run_selection(
+            pool_data, cache, anchor=args.anchor,
+            k_switch=args.k_switch, lead=args.lead)
+        sha = fusion.export_official(predictions, pool_data, Path(args.output))
+        print(json.dumps({
+            "questions": len(pool_data["pool"]),
+            "candidates": n,
+            "rule": f"anchor={args.anchor} k_switch={args.k_switch} lead={args.lead}",
+            "reasons": dict(Counter(m["reason"] for m in meta.values())),
+            "output": str(Path(args.output).resolve()),
+            "prediction_sha256": sha,
+            "gold_used_in_selection": False,
+        }, ensure_ascii=False, indent=1), flush=True)
     elif args.command == "audit":
         print(json.dumps(audit_public_run(args.work), ensure_ascii=False), flush=True)
     else:

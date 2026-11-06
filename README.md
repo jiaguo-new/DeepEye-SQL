@@ -1,4 +1,15 @@
-# BirdFusion — BIRD Text-to-SQL, publisher Dev 20240627: **1146/1534 = 74.71%** (official EX)
+# BirdFusion — BIRD Text-to-SQL, publisher Dev 20240627
+
+> **Result status (2026-11-06, per docs/AUDIT_RECHECK_20261106.md):** the
+> historical table below could not be reproduced with the official evaluator on
+> the official Dev gold; the v16 shipping artifacts are not distributed and its
+> 74.71% is **unverified**. The current **verified** results on this branch are:
+>
+> * **Fusion v2 (gold-free anchor+corroboration selector): 1086/1534 = 70.80%**
+>   (official evaluator; beats the strongest single input corpus at 1061/69.17%
+>   and the prior fusion layer at 1028/67.01%) — `FUSION_V2_SPEC.md`,
+>   `docs/FUSION_V2_RESULTS.md`, `fusion_v2_predicted_sql.json`.
+> * public v1 pipeline: 1016/1534 = 66.23% (reproduces exactly).
 
 End-to-end, gold-free text-to-SQL system: two independent candidate pools, exact
 result-set clustering over read-only SQLite execution, and a frozen evidence-based
@@ -6,11 +17,12 @@ selector chain. Every number is measured locally with the official BIRD evaluato
 (set-equality, 30 s meta-timeout, UNKNOWN kept in the denominator); we inherit no
 published scores from any pipeline.
 
-| Configuration | Dev 1534 official EX |
-|---|---|
-| Pool P generation alone (Qwen3.8-27B, 4 candidates/question, zero-shot) | 1063 = 69.30% |
-| Upstream **DeepEye-SQL run** (adapted backends only; see docs/DEEPEYE_ADAPTATIONS.md) | 1143 = 74.51% |
-| **Shipped: BirdFusion pools + frozen gold-free selector v16** | **1146 = 74.71%** (simple 79.46 / moderate 68.97 / challenging 62.76) |
+| Configuration | Dev 1534 official EX | status |
+|---|---|---|
+| Pool P generation alone (Qwen3.8-27B, 4 candidates/question, zero-shot) | 1063 = 69.30% | **unverified** (official rescore: 992 = 64.67%) |
+| Upstream **DeepEye-SQL run** (adapted backends only; see docs/DEEPEYE_ADAPTATIONS.md) | 1143 = 74.51% | **unverified** (the artifact is the upstream published file; official rescore: 1061 = 69.17%) |
+| **Shipped: BirdFusion pools + frozen gold-free selector v16** | **1146 = 74.71%** (simple 79.46 / moderate 68.97 / challenging 62.76) | **unverified** (artifacts not distributed) |
+| **Fusion v2 (this branch)** | **1086 = 70.80%** (simple 76.32 / moderate 64.30 / challenging 56.25) | **verified** (official evaluator, reproducible) |
 
 ## How it works
 

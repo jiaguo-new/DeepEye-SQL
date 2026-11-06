@@ -1,0 +1,8 @@
+{
+  "_comment": "Fusion v2 candidate pool manifest. Sources are NOT redistributed with this repository (see FUSION_V2_SPEC.md section 1 for provenance, SHA-256 of each source, and how to obtain them). Edit the paths to your local copies, then run: birdfusion fusion --manifest configs/fusion_v2_manifest.json --database-root <dev_databases> --work <dir> --output <pred.json>",
+  "arms_file": "D:/text2sql/union_oracle_20261026/P3_PACKAGE/dev_arms_sql.json",
+  "prediction_files": {
+    "deepeye": "D:/text2sql/execution_20261010_gateway_baseline_v1/upstream_DeepEye_SQL/results/bird-dev/qwen3.6-27b.json",
+    "decompose": "D:/text2sql/NL2SQL360-master/nl2sql-decompose-v2-submitted-20261020/report/experiment/artifacts/20260917_decompose_full_dev/bird_official_format/predicted_sql.json"
+  }
+}
