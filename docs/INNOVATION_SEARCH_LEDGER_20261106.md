@@ -60,7 +60,12 @@ do not exist for hidden Test questions. Rebuilding the procedure from generatabl
 and measuring on Dev as a Test-time proxy: generatable-pool oracle 1233 (80.38%); max-support
 champion 1091 (71.12%); champion + frozen D/E/F **1109 (72.29%)** - the frozen rule chain nets
 **+18 on the degraded pool**, first measured transferability evidence for the rules-only
-leaderboard route. Two disclosed two-sided approximations: the proxy stage-1 omits the v10 TRAIN
+leaderboard route. A test-FAITHFUL re-measurement (own DeepEye-12 majority rep instead of the
+upstream published file, which cannot exist at Test time) gives **1096/71.45%** - the band is now
+anchored by both bounds: faithful lower 71.45, published-rep upper 72.29 (unavailable by
+construction at Test), with v10 override (~+13, test-generatable) still omitted. D2 transfer check:
+all three fired questions (q405/765/1441) keep the count-zero trigger under the generatable pool,
+so the +1 from decision (2) transfers unchanged. Two disclosed two-sided approximations: the proxy stage-1 omits the v10 TRAIN
 override (~+13), and the D/E/F rep slot uses the published Dev file rather than our own pipeline
 consensus (the generatable variant at Test time). Leaderboard expectation therefore anchors the
 70-73% band; the D2 rule (+1, pure generatable) transfers unchanged if adopted.
