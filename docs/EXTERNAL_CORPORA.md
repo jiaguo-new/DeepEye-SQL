@@ -19,7 +19,16 @@ Resolution adopted: honest disclosure (this file + README), and a measured ablat
 its result will be posted here. Risk to independent-Test generalization is stated in
 README "Honest limits".
 
-## Ablation plan (not yet run — experiment freeze)
+## Measured slices (2026-11-06, post-freeze-lift)
+
+* **Pool-D / upstream-B rule-chain marginal value** — fresh official rescore of the
+  immediate pre-D/E/F baseline `shipping_v15` (d4d14758): **1139 = 74.32%**
+  (78.92/68.75/62.76) vs v16 1146 = 74.71%. Net contribution of the three
+  DeepEye-evidence rules (91 switches, D+E+F): **+7 questions** — i.e. the external
+  artifacts move ≤0.46 pp on Dev; the bulk of the headline is our own pools +
+  gold-free consensus/repair rules. Rescored 2026-11-06 13:4x, current pinned gold.
+
+## Ablation plan (remaining)
 1. Regenerate selector decisions with Pool P restricted to our own v19 generations
    (drop the 9 public corpora + B): expected Dev drop, unmeasured.
 2. Same on the Test-holdout flow (question IDs unknown to us; gold never used).

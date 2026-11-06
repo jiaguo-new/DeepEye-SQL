@@ -36,6 +36,12 @@
    "claimed": "71.19/71.45%",
    "official_recheck_20261106": "not rerun in this session (superseded by v16 headline; ledger rows to be added when artifacts are pinned)",
    "status": "pending"
+  },
+  {
+   "artifact": "shipping v15 (pre-D/E/F baseline, SHA d4d14758)",
+   "claimed": "legacy internal note only",
+   "official_recheck_20261106": "1139 (74.32%) layers 78.92/68.75/62.76, current pinned gold, fresh evaluator",
+   "status": "verified fresh; P2-1 slice: Pool-D rules D/E/F net = +7 (v15->v16)"
   }
  ]
 }
