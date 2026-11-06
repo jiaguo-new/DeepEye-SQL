@@ -53,6 +53,16 @@ Official numbers below come from the official BIRD evaluator (serial runs, one i
     (11b) requires TRAIN-first validation, which needs the paraphraser model (GPU-locked) and
     ~900 gateway calls (7.5× the standing cost cap) → blocked on user decisions.
 
+15. **answer-shape assertion** (new): flippable col-mismatch ceiling 19/139; regex fire 2 wrong / 1
+    correct (net +1); LLM-asserted variant EV-negative by census arithmetic. Closed offline, ~4 min.
+16. **result-set strict inclusion** (new): full-Dev census (10-way parallel, decision side
+    gold-free): 113 fires; damage-side 65 exceeds rescue ceiling 21; direction near-symmetric
+    (29/19, 11/10) with no free discriminator. Closed by census, zero submissions.
+17. **D3 all-NULL rescue** (new): TRAIN mirror footprint 8 (7 wrong + 1 gold-is-NULL); pre-registered
+    rule (bloc>=2 non-NULL, all-NULL>=3 protection clause) measured gains=0 / damage=1 -> TRAIN gate
+    FAIL -> closed WITHOUT Dev application. The frozen gate demonstrably intercepted a rule that
+    would have been net-negative on Dev.
+
 ## Test-time procedure accounting (round 46, measured, gold never in selection)
 The shipped 74.71% figure is a Dev corpus-augmented measurement: five Pool-P families
 (hermes/t75v4/ds/t75/bird_dev_check) and the D/E/F reference SQL (upstream published Dev file)
