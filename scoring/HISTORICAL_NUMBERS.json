@@ -1,0 +1,41 @@
+{
+ "_meta": "Official-evaluator recomputation ledger (2026-11-06). Each row: fresh run of verbatim evaluation_ex.py (SHA da1bbcd4...) against publisher dev_20240627 gold (dev.json 630272f2..., dev.sql 42087d70..., dev_databases.zip 8132aacd...), meta_time_out=30, on the scoring host. No cache/label paths exist in this procedure.",
+ "gold_caution": "The 2026-11-06 audit recheck used a dev.json with SHA 9b4c38da..., which is NOT the current official publisher file: today's fresh download of the publisher dev.zip is byte-identical to the Nov-2 download (SHA cdd6d19f...) and contains dev.json 630272f2.... Example divergence: official qid 5 reads 'greater than 400' (gold->4); the 9b4c file's qid 5 reads 'under 400' (gold->0). Audit deltas on v19/DeepEye trace to that gold, not to scoring-cache mechanisms: all 82 'overcounted' qids are correct under the official gold with zero timeouts (max latency <3s), and all 11 'undercounted' qids are wrong \u2014 a clean mirror consistent with a gold revision.",
+ "rows": [
+  {
+   "artifact": "public v1 predicted_sql.json (SHA 0dede3dd\u2026)",
+   "claimed": "1016 (66.23%)",
+   "official_recheck_20261106": "1000 (65.19%) 72.00/55.60/52.41 on current official gold",
+   "status": "reexplained: record's own layer counts 925/465/144 prove it was scored on the PRE-2024-06-27 dev snapshot; current-gold value is 1000"
+  },
+  {
+   "artifact": "v19 pool final1534/predicted_sql.json",
+   "claimed": "1063 (69.30%)",
+   "official_recheck_20261106": "1063 (69.30%) 74.49/62.07/59.31",
+   "input_sha": "aae94afe7cd7892ab461f1e295aa138075fea2aaba198e1e022b25b8250ad396",
+   "status": "verified on official gold; audit's 992 measured against non-publisher dev.json 9b4c38da",
+   "fresh_run": "2026-11-06 10:57 serial log /tmp/p01/rescore.log; per-question run 1062/1063 (one 30s-boundary flip under sequential harness)",
+   "per_question_probe": "82/82 of the audit's 'overcounted' qids verified correct on current official gold, zero timeouts, max pred latency <3 s; their 11 'undercounted' all wrong \u2014 mirror consistent with annotation revision (qid5: current official text 'greater than 400', gold->4 == pred->4)"
+  },
+  {
+   "artifact": "upstream DeepEye-SQL published predictions results/bird-dev/qwen3.6-27b.json (used as B in D/E/F rules)",
+   "claimed": "1143 (74.51%) local rescore @240s; upstream paper 74.5",
+   "official_recheck_20261106": "1141 (74.38%) 79.89/68.10/59.31 @30s",
+   "input_sha": "0d073da4960180807abbfc15c93f7173dc42b805411a13843edbe5797457b27c (== upstream git blob at 252ab45a; provenance corrected: this is upstream-published, NOT a local rerun of DeepEye's final selector)",
+   "status": "corrected-provenance; disclosure fixed in README/DEEPEYE_ADAPTATIONS"
+  },
+  {
+   "artifact": "shipping v16 (headline, internal format)",
+   "claimed": "1146 (74.71%)",
+   "official_recheck_20261106": "1146 (74.71%) 79.46/68.97/62.76; also 1146 for two-tab export submission_pred_v1146.json (SHA f9f3322b...)",
+   "input_sha": "510c91049fa27803d0cc19f3bf91a4c820a374664cfc146f44c996b9922061c3",
+   "status": "verified; file now distributed under data/ with MANIFEST (audit could not find it in repo/release \u2014 true for repo, resolved by this branch)"
+  },
+  {
+   "artifact": "v16-era intermediates 1092/1096 (v13-era pools)",
+   "claimed": "71.19/71.45%",
+   "official_recheck_20261106": "not rerun in this session (superseded by v16 headline; ledger rows to be added when artifacts are pinned)",
+   "status": "pending"
+  }
+ ]
+}

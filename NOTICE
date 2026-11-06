@@ -19,14 +19,28 @@ Provenance notices
   answer selection are used exactly as published. Upstream code is NOT
   redistributed in this repository: reproduce by cloning upstream at the
   pinned commit and applying the config-level adaptations above.
-* The end-to-end DeepEye-SQL run (adapted, our model) scores 1143/1534 =
-  74.51% on BIRD publisher Dev 20240627 under the official evaluator. The
+* The upstream-published DeepEye-SQL Dev predictions file (git blob @252ab45a,
+  SHA 0d073da4) used as rule B in our selector rescores to 1141/1534 = 74.38%
+  (79.89/68.10/59.31) on the current publisher Dev 20240627 gold under the
+  official evaluator, 30 s budget; the upstream paper reports 74.5. Our locally
+  executed adapted-pipeline runs contribute the Pool-D candidate draws only.
+  An earlier line here saying "1143 = 74.51% end-to-end run, our model" conflated
+  these two artifacts and is corrected (audit F3, 2026-11-06). The
   shipped system in this repository (BirdFusion pool P + frozen gold-free
-  selector v16, which consumes DeepEye output only as "Pool D" evidence)
-  scores 1146/1534 = 74.71%. We do not inherit any published DeepEye
-  scores; every number here is measured locally.
+  selector v16, which consumes the upstream file as rule B and our adapted-run
+  draws as Pool D evidence) scores 1146/1534 = 74.71% (fresh official rescores
+  2026-11-06; byte-reproducible via reproduce_shipping_v16.py + data/).
+  We do not reuse any paper's *score* — every number is measured locally —
+  but we DO consume external teams' published Dev *predictions* as candidate
+  evidence (rule B above; nine public corpora inside Pool P). This was
+  understated in earlier versions of this file and in README's
+  "we inherit no published scores from any pipeline"; corrected 2026-11-06
+  (audit F3/F6). Registry: docs/EXTERNAL_CORPORA.md.
 * Candidate corpora used in Pool P are public/historical Text-to-SQL
-  predictions redistributed by their original authors; this repository
-  contains no copies of them and no ground-truth SQL.
+  predictions redistributed by their original authors. This repository now
+  ships a gold-free, result-clustered rendering of the merged pool
+  (data/unified_pool.goldfree.json; all gold-derived fields stripped,
+  verified field-level) for selector reproduction, and contains no
+  ground-truth SQL.
 * BIRD benchmark databases and gold SQL are NOT redistributed here; obtain
   them from the official BIRD release for reproduction.

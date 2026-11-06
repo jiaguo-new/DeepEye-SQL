@@ -50,7 +50,11 @@ thresholds are integers fixed in `SHIPPING_V16_FREEZE.json`.
 | E | **DeepEye tiebreak (narrow)** — adopt the Pool-D final SQL when its result is NOT in Pool D's majority cluster, the question has ≥ 4 clusters, and it returns fewer rows than the current pick | 10 |
 | F | **DeepEye tiebreak (union of 5 gold-free execution gates)** — adopt the Pool-D final SQL when **any** of F1–F5 holds | 54 |
 
-Rule F's gates, with `A` = current pick's result set, `B` = Pool-D final SQL's result set,
+Rule F's gates, with `A` = current pick's result set, `B` = Pool-D final SQL's result set
+(**provenance, 2026-11-06 audit remediation:** `B` is the upstream-published predictions file
+`results/bird-dev/qwen3.6-27b.json`, SHA `0d073da4…`, verified byte-identical to the git blob at
+`252ab45a`; locally rescored to 1141 = 74.38% on current official gold. Pool-D *candidate
+draws* are from our locally executed adapted-pipeline runs. See docs/DEEPEYE_ADAPTATIONS.md).
 `dm` = size of the largest Pool-D candidate cluster whose result equals `B`,
 `am` = size of the largest Pool-D candidate cluster whose result equals `A`,
 `ncl` = number of Pool-P clusters for the question, `v_nfam` = family count of the
