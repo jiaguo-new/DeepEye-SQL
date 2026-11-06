@@ -80,6 +80,16 @@ override (~+13), and the D/E/F rep slot uses the published Dev file rather than 
 consensus (the generatable variant at Test time). Leaderboard expectation therefore anchors the
 70-73% band; the D2 rule (+1, pure generatable) transfers unchanged if adopted.
 
+## Evaluation topology (process discovery #5, verified against the official site)
+The hidden Test databases/questions are NOT downloadable (bird-bench.github.io publishes
+dev.zip + train.zip only). The organizers run OUR declared procedure on Test via our API
+gateway + scoped key. Consequences: (i) the test-faithful proxy above (71.45 lower / 72.29 upper)
+is not a simulation but the only pre-drillable form of the real evaluation; (ii) gateway
+robustness (retry, UNKNOWN-never-votes, per-question timeout degrading to pool champion) is
+the highest-leverage remaining engineering surface for the leaderboard, pending the organizers'
+concurrency answer; (iii) the D2 rule and any Arctic-based increments run locally at evaluation
+time with public weights and zero data egress - declared in the package, no topology change.
+
 ## Headroom accounting (unchanged, gold-free)
 - Pool oracle 1284; **131/141 headroom pairs already lost at stage-1 scoring**, only 10 lost in
   the rule chain (every shipped rule net-positive overall). 132 wrong questions have a pool
