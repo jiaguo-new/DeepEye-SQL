@@ -48,6 +48,24 @@
    "claimed": "n/a (new measurement)",
    "official_recheck_20261106": "1067 (69.56%) layers 75.14/61.85/58.62 current pinned gold",
    "status": "measured; = external-evidence decomposition base arm"
+  },
+  {
+   "artifact": "AskData-modified standalone (21b5cfd3)",
+   "official_recheck_20261106": "1092 (71.19%) 76.65/64.22/58.62",
+   "status": "verified fresh, serial, pinned gold",
+   "claimed": "n/a (new measurements)"
+  },
+  {
+   "artifact": "v16+G1 askdata-corr (17)",
+   "official_recheck_20261106": "1141 (74.38%)",
+   "status": "negative evidence net -5",
+   "claimed": "n/a (new measurements)"
+  },
+  {
+   "artifact": "v16+G3 askdata-corr (52)",
+   "official_recheck_20261106": "1127 (73.47%)",
+   "status": "negative evidence net -19",
+   "claimed": "n/a (new measurements)"
   }
  ]
 }

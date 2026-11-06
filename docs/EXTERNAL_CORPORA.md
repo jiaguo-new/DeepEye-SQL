@@ -41,3 +41,25 @@ README "Honest limits".
    (drop the 9 public corpora + B): expected Dev drop, unmeasured.
 2. Same on the Test-holdout flow (question IDs unknown to us; gold never used).
 3. Report both deltas here + in the BIRD submission email's method summary.
+
+## Negative evidence — AskData-modified corroboration (measured 2026-11-06)
+
+Our locally-modified AskData pipeline (legacy_askdata_medium1534_20261031_v1, SHA `21b5cfd3…`;
+AskData code + our Qwen3.8-27B GGUF, majority-vote + execution-feedback selection,
+`reference_access:false`) is ALREADY a Pool P family. Fresh official numbers (pinned gold, serial):
+
+| arm | EX | notes |
+|---|---|---|
+| modified AskData standalone | **1092 = 71.19%** (76.65/64.22/58.62) | below shipped 1146 |
+| cross-tab vs v16 (per-question harness) | both 1062 · ours-only 82 · theirs-only 29 · neither 361 | union-oracle 1173 = +29 ceiling |
+| pool reachability | 29/29 of their-only-correct answers already have result-equivalent clusters in Pool P | their generation adds NO new candidates — pure selection problem |
+| G1 weak-champion→their-strong-cluster (17 switches, a-priori) | 1141 = 74.38% → **net −5** | negative |
+| G2 empty-champion via their pick | fires 0 | already covered by rule A |
+| G3 strict-majority (52 switches, a-priori) | 1127 = 73.47% → **net −19** | negative |
+
+Conclusion: their *selection* output is not independent evidence (shares families/model lineage
+with Pool P), so corroboration rules harvest mostly noise — joins the negative ledger
+(majority −27, unanimity −15…−28, 3-system vote ≤0, referee −24…−29). We did NOT tune gates
+against the 29 dev labels (that would re-create the F6-style indirect fitting the audit flagged).
+Pool composition is not the bottleneck; selection precision is, and no observable AskData-mod
+proxy correlates with correctness beyond what rules D/E/F already exploit.
