@@ -1,0 +1,1000 @@
+{
+ "wall": [
+  "25",
+  "26",
+  "27",
+  "28",
+  "49",
+  "53",
+  "65",
+  "70",
+  "84",
+  "92",
+  "99",
+  "106",
+  "125",
+  "128",
+  "129",
+  "130",
+  "132",
+  "142",
+  "145",
+  "150",
+  "162",
+  "164",
+  "169",
+  "176",
+  "179",
+  "180",
+  "181",
+  "182",
+  "192",
+  "193",
+  "197",
+  "198",
+  "205",
+  "207",
+  "212",
+  "215",
+  "218",
+  "219",
+  "221",
+  "223",
+  "231",
+  "234",
+  "247",
+  "252",
+  "254",
+  "259",
+  "267",
+  "269",
+  "271",
+  "281",
+  "282",
+  "296",
+  "311",
+  "317",
+  "328",
+  "330",
+  "335",
+  "338",
+  "340",
+  "341",
+  "342",
+  "343",
+  "344",
+  "349",
+  "357",
+  "359",
+  "360",
+  "386",
+  "387",
+  "388",
+  "389",
+  "392",
+  "399",
+  "403",
+  "408",
+  "416",
+  "428",
+  "429",
+  "431",
+  "432",
+  "433",
+  "437",
+  "441",
+  "442",
+  "443",
+  "445",
+  "446",
+  "447",
+  "454",
+  "458",
+  "465",
+  "479",
+  "500",
+  "512",
+  "514",
+  "518",
+  "523",
+  "530",
+  "533",
+  "581",
+  "584",
+  "586",
+  "587",
+  "592",
+  "595",
+  "602",
+  "603",
+  "628",
+  "631",
+  "632",
+  "635",
+  "639",
+  "640",
+  "646",
+  "649",
+  "679",
+  "682",
+  "685",
+  "686",
+  "687",
+  "693",
+  "694",
+  "709",
+  "710",
+  "716",
+  "743",
+  "811",
+  "812",
+  "828",
+  "857",
+  "871",
+  "888",
+  "903",
+  "908",
+  "922",
+  "928",
+  "930",
+  "943",
+  "955",
+  "963",
+  "966",
+  "970",
+  "973",
+  "978",
+  "986",
+  "989",
+  "993",
+  "1004",
+  "1006",
+  "1010",
+  "1024",
+  "1027",
+  "1029",
+  "1041",
+  "1058",
+  "1064",
+  "1091",
+  "1107",
+  "1113",
+  "1119",
+  "1120",
+  "1121",
+  "1131",
+  "1135",
+  "1144",
+  "1148",
+  "1152",
+  "1164",
+  "1170",
+  "1175",
+  "1179",
+  "1185",
+  "1199",
+  "1204",
+  "1213",
+  "1219",
+  "1225",
+  "1243",
+  "1247",
+  "1248",
+  "1257",
+  "1265",
+  "1268",
+  "1269",
+  "1273",
+  "1274",
+  "1275",
+  "1279",
+  "1366",
+  "1370",
+  "1391",
+  "1399",
+  "1425",
+  "1427",
+  "1433",
+  "1451",
+  "1481",
+  "1482",
+  "1491",
+  "1498",
+  "1503",
+  "1520",
+  "1529",
+  "1531"
+ ],
+ "labels": {
+  "25": [
+   "MULTI_COL_PROJECTION",
+   "GROUP_BY",
+   "CAST_OR_ARITH"
+  ],
+  "26": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "27": [
+   "DATE_FUNC",
+   "AGGREGATE",
+   "OUTER_JOIN"
+  ],
+  "28": [
+   "SUBQUERY",
+   "MULTI_COL_PROJECTION"
+  ],
+  "49": [
+   "SUBQUERY",
+   "AGGREGATE",
+   "GROUP_BY",
+   "ORDER_BY"
+  ],
+  "53": [
+   "PLAIN"
+  ],
+  "65": [
+   "CASE",
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "70": [
+   "AGGREGATE"
+  ],
+  "84": [
+   "SUBQUERY",
+   "MULTI_COL_PROJECTION",
+   "GROUP_BY",
+   "ORDER_BY"
+  ],
+  "92": [
+   "PLAIN"
+  ],
+  "99": [
+   "DATE_FUNC",
+   "AGGREGATE",
+   "ORDER_BY"
+  ],
+  "106": [
+   "ORDER_BY"
+  ],
+  "125": [
+   "CAST_OR_ARITH"
+  ],
+  "128": [
+   "AGGREGATE",
+   "GROUP_BY",
+   "ORDER_BY"
+  ],
+  "129": [
+   "ORDER_BY"
+  ],
+  "130": [
+   "AGGREGATE"
+  ],
+  "132": [
+   "AGGREGATE"
+  ],
+  "142": [
+   "AGGREGATE"
+  ],
+  "145": [
+   "SUBQUERY",
+   "DATE_FUNC",
+   "AGGREGATE"
+  ],
+  "150": [
+   "AGGREGATE"
+  ],
+  "162": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "164": [
+   "PLAIN"
+  ],
+  "169": [
+   "CASE",
+   "DATE_FUNC",
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "176": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "179": [
+   "DATE_FUNC",
+   "AGGREGATE"
+  ],
+  "180": [
+   "DATE_FUNC",
+   "AGGREGATE"
+  ],
+  "181": [
+   "ORDER_BY"
+  ],
+  "182": [
+   "DATE_FUNC",
+   "AGGREGATE"
+  ],
+  "192": [
+   "AGGREGATE"
+  ],
+  "193": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "197": [
+   "SUBQUERY",
+   "AGGREGATE",
+   "GROUP_BY"
+  ],
+  "198": [
+   "SUBQUERY",
+   "AGGREGATE",
+   "GROUP_BY"
+  ],
+  "205": [
+   "PLAIN"
+  ],
+  "207": [
+   "PLAIN"
+  ],
+  "212": [
+   "SUBQUERY",
+   "MULTI_COL_PROJECTION",
+   "GROUP_BY",
+   "ORDER_BY"
+  ],
+  "215": [
+   "CASE",
+   "AGGREGATE"
+  ],
+  "218": [
+   "CASE",
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "219": [
+   "CASE",
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "221": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "223": [
+   "PLAIN"
+  ],
+  "231": [
+   "SUBQUERY",
+   "MULTI_COL_PROJECTION",
+   "GROUP_BY",
+   "ORDER_BY"
+  ],
+  "234": [
+   "AGGREGATE"
+  ],
+  "247": [
+   "SUBQUERY"
+  ],
+  "252": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "254": [
+   "SUBQUERY",
+   "AGGREGATE",
+   "GROUP_BY",
+   "ORDER_BY",
+   "CAST_OR_ARITH"
+  ],
+  "259": [
+   "SUBQUERY",
+   "AGGREGATE"
+  ],
+  "267": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "269": [
+   "AGGREGATE"
+  ],
+  "271": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "281": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "282": [
+   "SUBQUERY",
+   "CASE",
+   "AGGREGATE",
+   "SET_OP",
+   "CAST_OR_ARITH"
+  ],
+  "296": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "311": [
+   "AGGREGATE"
+  ],
+  "317": [
+   "CASE",
+   "AGGREGATE"
+  ],
+  "328": [
+   "PLAIN"
+  ],
+  "330": [
+   "CASE",
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "335": [
+   "AGGREGATE"
+  ],
+  "338": [
+   "PLAIN"
+  ],
+  "340": [
+   "PLAIN"
+  ],
+  "341": [
+   "PLAIN"
+  ],
+  "342": [
+   "ORDER_BY"
+  ],
+  "343": [
+   "PLAIN"
+  ],
+  "344": [
+   "PLAIN"
+  ],
+  "349": [
+   "MULTI_COL_PROJECTION",
+   "GROUP_BY",
+   "ORDER_BY"
+  ],
+  "357": [
+   "PLAIN"
+  ],
+  "359": [
+   "PLAIN"
+  ],
+  "360": [
+   "SUBQUERY"
+  ],
+  "386": [
+   "AGGREGATE"
+  ],
+  "387": [
+   "SUBQUERY",
+   "MULTI_COL_PROJECTION"
+  ],
+  "388": [
+   "SUBQUERY",
+   "MULTI_COL_PROJECTION"
+  ],
+  "389": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "392": [
+   "ORDER_BY"
+  ],
+  "399": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "403": [
+   "SUBQUERY",
+   "CASE",
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "408": [
+   "PLAIN"
+  ],
+  "416": [
+   "CASE",
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "428": [
+   "MULTI_COL_PROJECTION",
+   "GROUP_BY"
+  ],
+  "429": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "431": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "432": [
+   "GROUP_BY",
+   "ORDER_BY"
+  ],
+  "433": [
+   "CASE",
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "437": [
+   "PLAIN"
+  ],
+  "441": [
+   "PLAIN"
+  ],
+  "442": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "443": [
+   "GROUP_BY"
+  ],
+  "445": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "446": [
+   "CASE",
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "447": [
+   "PLAIN"
+  ],
+  "454": [
+   "CASE",
+   "AGGREGATE"
+  ],
+  "458": [
+   "CASE",
+   "AGGREGATE"
+  ],
+  "465": [
+   "CASE",
+   "AGGREGATE"
+  ],
+  "479": [
+   "CASE",
+   "AGGREGATE"
+  ],
+  "500": [
+   "PLAIN"
+  ],
+  "512": [
+   "CASE",
+   "AGGREGATE"
+  ],
+  "514": [
+   "SUBQUERY",
+   "MULTI_COL_PROJECTION",
+   "ORDER_BY"
+  ],
+  "518": [
+   "MULTI_COL_PROJECTION",
+   "GROUP_BY",
+   "ORDER_BY"
+  ],
+  "523": [
+   "AGGREGATE",
+   "GROUP_BY",
+   "ORDER_BY",
+   "CAST_OR_ARITH"
+  ],
+  "530": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "533": [
+   "DATE_FUNC",
+   "AGGREGATE"
+  ],
+  "581": [
+   "PLAIN"
+  ],
+  "584": [
+   "PLAIN"
+  ],
+  "586": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "587": [
+   "AGGREGATE"
+  ],
+  "592": [
+   "SUBQUERY",
+   "MULTI_COL_PROJECTION",
+   "GROUP_BY"
+  ],
+  "595": [
+   "GROUP_BY"
+  ],
+  "602": [
+   "SUBQUERY",
+   "MULTI_COL_PROJECTION"
+  ],
+  "603": [
+   "SUBQUERY",
+   "DATE_FUNC",
+   "AGGREGATE"
+  ],
+  "628": [
+   "SUBQUERY",
+   "MULTI_COL_PROJECTION"
+  ],
+  "631": [
+   "AGGREGATE"
+  ],
+  "632": [
+   "AGGREGATE"
+  ],
+  "635": [
+   "AGGREGATE",
+   "GROUP_BY"
+  ],
+  "639": [
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "640": [
+   "AGGREGATE"
+  ],
+  "646": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "649": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "679": [
+   "MULTI_COL_PROJECTION",
+   "ORDER_BY"
+  ],
+  "682": [
+   "DATE_FUNC",
+   "MULTI_COL_PROJECTION",
+   "ORDER_BY"
+  ],
+  "685": [
+   "AGGREGATE"
+  ],
+  "686": [
+   "SUBQUERY"
+  ],
+  "687": [
+   "AGGREGATE",
+   "GROUP_BY",
+   "ORDER_BY"
+  ],
+  "693": [
+   "AGGREGATE",
+   "ORDER_BY"
+  ],
+  "694": [
+   "MULTI_COL_PROJECTION",
+   "ORDER_BY"
+  ],
+  "709": [
+   "AGGREGATE"
+  ],
+  "710": [
+   "AGGREGATE"
+  ],
+  "716": [
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "743": [
+   "SUBQUERY",
+   "CASE",
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "811": [
+   "PLAIN"
+  ],
+  "812": [
+   "PLAIN"
+  ],
+  "828": [
+   "AGGREGATE",
+   "ORDER_BY"
+  ],
+  "857": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "871": [
+   "PLAIN"
+  ],
+  "888": [
+   "AGGREGATE",
+   "ORDER_BY"
+  ],
+  "903": [
+   "AGGREGATE"
+  ],
+  "908": [
+   "MULTI_COL_PROJECTION",
+   "ORDER_BY"
+  ],
+  "922": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "928": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "930": [
+   "SUBQUERY"
+  ],
+  "943": [
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "955": [
+   "SUBQUERY",
+   "CASE",
+   "MULTI_COL_PROJECTION",
+   "GROUP_BY",
+   "CAST_OR_ARITH"
+  ],
+  "963": [
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "966": [
+   "AGGREGATE"
+  ],
+  "970": [
+   "DATE_FUNC",
+   "MULTI_COL_PROJECTION",
+   "ORDER_BY"
+  ],
+  "973": [
+   "DATE_FUNC",
+   "MULTI_COL_PROJECTION",
+   "ORDER_BY"
+  ],
+  "978": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "986": [
+   "ORDER_BY"
+  ],
+  "989": [
+   "PLAIN"
+  ],
+  "993": [
+   "AGGREGATE"
+  ],
+  "1004": [
+   "AGGREGATE",
+   "GROUP_BY",
+   "ORDER_BY"
+  ],
+  "1006": [
+   "CASE",
+   "MULTI_COL_PROJECTION",
+   "ORDER_BY",
+   "CAST_OR_ARITH"
+  ],
+  "1010": [
+   "PLAIN"
+  ],
+  "1024": [
+   "ORDER_BY"
+  ],
+  "1027": [
+   "ORDER_BY"
+  ],
+  "1029": [
+   "ORDER_BY"
+  ],
+  "1041": [
+   "SUBQUERY",
+   "MULTI_COL_PROJECTION",
+   "ORDER_BY",
+   "CAST_OR_ARITH"
+  ],
+  "1058": [
+   "SUBQUERY",
+   "MULTI_COL_PROJECTION",
+   "ORDER_BY",
+   "SET_OP"
+  ],
+  "1064": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "1091": [
+   "AGGREGATE"
+  ],
+  "1107": [
+   "SUBQUERY",
+   "MULTI_COL_PROJECTION",
+   "ORDER_BY"
+  ],
+  "1113": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "1119": [
+   "AGGREGATE"
+  ],
+  "1120": [
+   "AGGREGATE"
+  ],
+  "1121": [
+   "DATE_FUNC",
+   "AGGREGATE"
+  ],
+  "1131": [
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "1135": [
+   "ORDER_BY"
+  ],
+  "1144": [
+   "SUBQUERY",
+   "MULTI_COL_PROJECTION",
+   "ORDER_BY"
+  ],
+  "1148": [
+   "CASE",
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "1152": [
+   "CASE",
+   "AGGREGATE"
+  ],
+  "1164": [
+   "CASE",
+   "DATE_FUNC",
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "1170": [
+   "DATE_FUNC",
+   "AGGREGATE"
+  ],
+  "1175": [
+   "DATE_FUNC",
+   "MULTI_COL_PROJECTION",
+   "ORDER_BY"
+  ],
+  "1179": [
+   "SUBQUERY",
+   "MULTI_COL_PROJECTION"
+  ],
+  "1185": [
+   "CASE",
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "1199": [
+   "DATE_FUNC",
+   "AGGREGATE"
+  ],
+  "1204": [
+   "DATE_FUNC",
+   "AGGREGATE"
+  ],
+  "1213": [
+   "CASE",
+   "MULTI_COL_PROJECTION"
+  ],
+  "1219": [
+   "SUBQUERY",
+   "AGGREGATE"
+  ],
+  "1225": [
+   "CASE",
+   "MULTI_COL_PROJECTION"
+  ],
+  "1243": [
+   "CASE",
+   "DATE_FUNC",
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "1247": [
+   "AGGREGATE"
+  ],
+  "1248": [
+   "AGGREGATE"
+  ],
+  "1257": [
+   "DATE_FUNC",
+   "AGGREGATE"
+  ],
+  "1265": [
+   "AGGREGATE"
+  ],
+  "1268": [
+   "MULTI_COL_PROJECTION",
+   "ORDER_BY"
+  ],
+  "1269": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "1273": [
+   "AGGREGATE"
+  ],
+  "1274": [
+   "AGGREGATE"
+  ],
+  "1275": [
+   "AGGREGATE"
+  ],
+  "1279": [
+   "CASE",
+   "AGGREGATE"
+  ],
+  "1366": [
+   "PLAIN"
+  ],
+  "1370": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "1391": [
+   "CASE",
+   "AGGREGATE"
+  ],
+  "1399": [
+   "CASE"
+  ],
+  "1425": [
+   "AGGREGATE"
+  ],
+  "1427": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "1433": [
+   "AGGREGATE"
+  ],
+  "1451": [
+   "GROUP_BY",
+   "ORDER_BY"
+  ],
+  "1481": [
+   "SUBQUERY",
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "1482": [
+   "AGGREGATE",
+   "CAST_OR_ARITH"
+  ],
+  "1491": [
+   "SUBQUERY",
+   "AGGREGATE",
+   "GROUP_BY",
+   "ORDER_BY"
+  ],
+  "1498": [
+   "AGGREGATE",
+   "GROUP_BY",
+   "ORDER_BY"
+  ],
+  "1503": [
+   "MULTI_COL_PROJECTION"
+  ],
+  "1520": [
+   "AGGREGATE"
+  ],
+  "1529": [
+   "AGGREGATE"
+  ],
+  "1531": [
+   "SUBQUERY",
+   "AGGREGATE",
+   "GROUP_BY",
+   "ORDER_BY"
+  ]
+ },
+ "pattern_counts": {
+  "MULTI_COL_PROJECTION": 61,
+  "GROUP_BY": 25,
+  "CAST_OR_ARITH": 29,
+  "DATE_FUNC": 20,
+  "AGGREGATE": 96,
+  "OUTER_JOIN": 1,
+  "SUBQUERY": 34,
+  "ORDER_BY": 44,
+  "PLAIN": 27,
+  "CASE": 30,
+  "SET_OP": 2
+ }
+}
