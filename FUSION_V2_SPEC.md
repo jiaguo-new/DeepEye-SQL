@@ -74,7 +74,12 @@ shipped point is not a knife-edge. **Weighted family scores were rejected**:
 execution success and internal self-consistency (the only gold-free quality
 signals) mis-rank families here — the most self-consistent, highest
 execution-success family is only mid-accuracy. Every Dev measurement made
-during development is listed in `docs/FUSION_V2_RESULTS.md` §4.
+during development is listed in `docs/FUSION_V2_RESULTS.md` §4, including the
+second iteration (§4.1): six further paths (pool expansion, train-calibrated
+shape rules, literal linking, COUNT-grain correction, train-fitted selector,
+family-quality gates) were explored and all measured negative or infeasible;
+the rule was deliberately left unchanged rather than chasing +3-question
+noise.
 
 ## 4. Why this is gold-free
 
@@ -121,8 +126,11 @@ birdfusion evaluate --predictions fusion_v2_predicted_sql.json \
 
 * **448 questions remain wrong** (official evaluator: 1086/1534 correct).
   Cache-level diagnostics below use the development scorer (±3 of official):
-* 452 cache-level misses; **207 of them have no correct SQL anywhere in the
+* 452 cache-level misses; **204 of them have no correct SQL anywhere in the
   47,692-candidate pool** — a generation wall; no selector can fix them.
+  (12 of the 204 are rescuable by a mechanical de-DISTINCT transform, raising
+  the oracle to 1339, but every selector-side path to those rescues measured
+  net-negative — see `docs/FUSION_V2_RESULTS.md` §4.1 R4.)
 * 68 reachable misses tie the anchor on family count — beyond what
   family-count evidence can decide (the rule family is saturated; grid §3).
 * 40 misses are fusion damage: the anchor was right and was overridden
