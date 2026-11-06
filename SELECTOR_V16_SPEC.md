@@ -50,7 +50,11 @@ thresholds are integers fixed in `SHIPPING_V16_FREEZE.json`.
 | E | **DeepEye tiebreak (narrow)** — adopt the Pool-D final SQL when its result is NOT in Pool D's majority cluster, the question has ≥ 4 clusters, and it returns fewer rows than the current pick | 10 |
 | F | **DeepEye tiebreak (union of 5 gold-free execution gates)** — adopt the Pool-D final SQL when **any** of F1–F5 holds | 54 |
 
-Rule F's gates, with `A` = current pick's result set, `B` = Pool-D final SQL's result set,
+Rule F's gates, with `A` = current pick's result set, `B` = Pool-D final SQL's result set
+(**provenance, 2026-11-06 audit remediation:** `B` is the upstream-published predictions file
+`results/bird-dev/qwen3.6-27b.json`, SHA `0d073da4…`, verified byte-identical to the git blob at
+`252ab45a`; locally rescored to 1141 = 74.38% on current official gold. Pool-D *candidate
+draws* are from our locally executed adapted-pipeline runs. See docs/DEEPEYE_ADAPTATIONS.md).
 `dm` = size of the largest Pool-D candidate cluster whose result equals `B`,
 `am` = size of the largest Pool-D candidate cluster whose result equals `A`,
 `ncl` = number of Pool-P clusters for the question, `v_nfam` = family count of the
@@ -124,3 +128,19 @@ SHA-256  510c91049fa27803d0cc19f3bf91a4c820a374664cfc146f44c996b9922061c3
   not a better selector. Exhaustive search over 5491 alternative candidates with 18
   gold-free feature atoms produced a best zero-damage rule worth exactly +2 on n=2, i.e.
   noise. See `ROUND5_SEARCH_EXHAUSTION.md`.
+
+## 8. Cross-machine reproducibility & load sensitivity (added 2026-11-06, audit verification §5)
+
+Result-equivalence features use a **25 s per-query cap**. On an idle machine the frozen
+chain reproduces byte-identical output (`510c9104…`), verified twice by the audit team and
+multiple times here. Under heavy concurrency the cap can truncate one execution and flip a
+gate — observed exactly once, **qid 584** (codebase_community), where 14-thread load pushed
+B's execution past 25 s (solo: 2–3 s; features a=b=1028 rows, dm=12, ncl=7 → F4 triggers
+correctly when uncrowded). The rule logic is deterministic; only timeout *observation* is
+machine/load-dependent. Mitigations: run on a quiet machine, and/or `--retry-timeouts`
+(serial retry for timed-out executions; default off).
+
+**Scoring vs reproducibility artifacts:** score **only** `submission_pred_v1146.json`
+(official two-tab, = 1146 = 74.71%); the internal single-tab `shipping_v16_predicted_sql.json`
+is the reproducibility reference — the official `package_sqls` parser will not split it
+correctly (0-score trap). See `data/README.md`.

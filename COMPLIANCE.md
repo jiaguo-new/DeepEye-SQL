@@ -25,3 +25,17 @@
 - 执行聚类相等不保证语义正确，盲选择可能损伤正确答案；必须用跨分布与全量 Dev 结果验证。
 - 通过格式和泄露审计不等于达到官方 Test 成绩或泛化门禁。
 - 官方 Test 只生成预测；不在本地假装计算 Test EX。
+
+
+## Known limitations (added 2026-11-06, audit remediation P1-3/P2-1)
+* CLI `run` (from-scratch generation) is **disabled** in this public build
+  (`RuntimeError("Live CLI disabled")`): it requires the private gateway + model
+  weights not redistributed here. Repository-level reproduction of the *shipped
+  predictions* works via `reproduce_shipping_v16.py` + `data/` + upstream B file.
+* Candidate pools include external teams' published Dev predictions
+  (`docs/EXTERNAL_CORPORA.md`). The earlier blanket ban on "historical prediction
+  ledgers" referred to **our own** gold-scored ledgers; external public
+  predictions are disclosed usage, with an ablation committed.
+* Scoring numbers before 2026-11-02 were produced on a pre-2024-06-27 dev
+  annotation snapshot and are being repinned to the current official gold
+  (`scoring/HISTORICAL_NUMBERS.json`).

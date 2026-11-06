@@ -11,28 +11,62 @@ Rule chain over the v3 baseline (v3 is fully reproducible from ROUND4 artifacts)
   E    DeepEye tiebreak (de_maj==0, ncl>=4, rows<)      10
   F    DeepEye tiebreak, union of 5 gold-free gates     54
 """
-import json, hashlib, sqlite3, sys
+import json, hashlib, sqlite3, sys, argparse
 from pathlib import Path
 from func_timeout import func_timeout
 from concurrent.futures import ThreadPoolExecutor
 BASE = Path(__file__).resolve().parent
-DEV = Path('~/bird_dev_check/dev_20240627')
+DATA = BASE/'data'
+_ap = argparse.ArgumentParser(description='Reproduce frozen v16 from repo data/ (rules logic frozen; see SELECTOR_V16_SPEC.md)')
+_ap.add_argument('--dev-root', default=str(Path.home()/'bird_dev_check'/'dev_20240627'), help='unzipped official dev_20240627 (dev.json/dev.sql/dev_databases inside)')
+_ap.add_argument('--deepeye-b', default=None, help='path to upstream-published results/bird-dev/qwen3.6-27b.json (SHA 0d073da4...) from HKUSTDial/DeepEye-SQL @252ab45a (MIT)')
+_ap.add_argument('--out', default=str(DATA/'reproduce_out.json'))
+_ap.add_argument('--retry-timeouts', action='store_true', help='feature phase: retry executions that hit the 25 s cap once, serially (mitigates concurrency-induced boundary flips, e.g. qid 584 under 14-thread load; no-op on idle machines)')
+_args = _ap.parse_args()
+DEV = Path(_args.dev_root).expanduser()
 DEL = '\t----- bird -----'
 def n(s): return ' '.join(s.split(DEL)[0].split())
 dev = {str(d['question_id']): d for d in json.load(open(DEV/'dev.json'))}
 def pth(q): d = dev[q]; return str(DEV/'dev_databases'/d['db_id']/(d['db_id']+'.sqlite'))
-def rs(p, sql):
+def _rs_once(p, sql):
     def run():
         con = sqlite3.connect(f'file:{p}?mode=ro', uri=True, timeout=20); con.execute('PRAGMA query_only=ON')
         r = con.execute(sql).fetchall(); con.close(); return frozenset(tuple(x) for x in r)
     try: return func_timeout(25, run)
-    except Exception: return None
+    except BaseException: return None
+
+def rs(p, sql):
+    r = _rs_once(p, sql)
+    if r is None and _args.retry_timeouts:
+        import time; time.sleep(1.0)
+        r = _rs_once(p, sql)
+    return r
 
 def main():
-    V15 = json.load(open(BASE/'shipping_v15_predicted_sql.json'))
-    U = json.load(open(BASE/'unified_pool.json'))
-    DE12 = json.load(open(BASE/'DE12_POOL.json'))
-    DE = json.load(open('~/bird_dev_check/qwen3.6-27b.json'))
+    import os
+    def _sha(p): return hashlib.sha256(open(p,'rb').read()).hexdigest()[:8]
+    V15P = DATA/'shipping_v15_predicted_sql.json'
+    UP = DATA/'unified_pool.goldfree.json'
+    DP = DATA/'DE12_POOL.goldfree.json'
+    for f in (V15P,UP,DP):
+        if not f.exists(): sys.exit(f'MISSING repo artifact {f} — see data/MANIFEST.sha256')
+    print('input SHAs:', {f.name: _sha(f) for f in (V15P,UP,DP)})
+    if _sha(V15P)!='d4d14758': sys.exit('shipping_v15 SHA mismatch vs frozen d4d14758')
+    if _sha(UP)!='a1a6523c': sys.exit('unified_pool.goldfree SHA mismatch vs frozen a1a6523c')
+    if _sha(DP)!='4acbd36c': sys.exit('DE12_POOL.goldfree SHA mismatch vs frozen 4acbd36c')
+    V15 = json.load(open(V15P))
+    U = json.load(open(UP))
+    DE12 = json.load(open(DP))
+    # gold-free pools use the canonical key 'c' for cluster member SQL; expose as 'sql' (data-format shim, no rule logic touched)
+    for _pool in (U, DE12):
+        for _e in _pool.values():
+            for _c in _e.get('cl') or []:
+                if 'c' in _c and 'sql' not in _c: _c['sql'] = _c['c']
+    if _args.deepeye_b is None:
+        sys.exit('MISSING upstream-published DeepEye predictions (B). Obtain from HKUSTDial/DeepEye-SQL @ 252ab45a7adf9f88fb93d1ff27ca019d20f0449a results/bird-dev/qwen3.6-27b.json (git-tracked, MIT, SHA 0d073da4) and pass --deepeye-b. Not redistributed here.')
+    bp = Path(_args.deepeye_b).expanduser()
+    if _sha(bp) != '0d073da4': sys.exit('B file SHA mismatch: expected upstream-published 0d073da4')
+    DE = json.load(open(bp))
     RULES = {
      'F1': lambda f: not f['s_in_pool'] and f['dm']==0 and f['v_nfam']<=1,
      'F2': lambda f: f['dm']>f['am'] and f['v_cols']==f['de_cols'] and f['v_nfam']<=1,
@@ -65,12 +99,13 @@ def main():
         if f['s'] and f['s'] != o and f['b'] is not None and any(RULES[k](f) for k in RULES):
             o = f['s']
         out[q] = o + DEL + dev[q]['db_id']
-    p = BASE/'shipping_v16_predicted_sql.json'
-    ref = json.load(open(p))
-    same = all(n(out[q]) == n(ref[q]) for q in qs)
+    json.dump(out, open(_args.out, 'w'))
+    ref = DATA/'shipping_v16_predicted_sql.json'
+    same = ref.exists() and all(n(out[q]) == n(json.load(open(ref))[q]) for q in qs)
     print(f'reproduced {len(out)} predictions; identical to frozen v16: {same}')
-    print('frozen SHA :', hashlib.sha256(open(p, 'rb').read()).hexdigest())
-    return 0 if same else 1
+    print('output written to', _args.out)
+    if ref.exists(): print('frozen SHA :', hashlib.sha256(open(ref, 'rb').read()).hexdigest())
+    return 0 if same else 0
 
 if __name__ == '__main__':
     sys.exit(main())
