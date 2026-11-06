@@ -128,3 +128,19 @@ SHA-256  510c91049fa27803d0cc19f3bf91a4c820a374664cfc146f44c996b9922061c3
   not a better selector. Exhaustive search over 5491 alternative candidates with 18
   gold-free feature atoms produced a best zero-damage rule worth exactly +2 on n=2, i.e.
   noise. See `ROUND5_SEARCH_EXHAUSTION.md`.
+
+## 8. Cross-machine reproducibility & load sensitivity (added 2026-11-06, audit verification §5)
+
+Result-equivalence features use a **25 s per-query cap**. On an idle machine the frozen
+chain reproduces byte-identical output (`510c9104…`), verified twice by the audit team and
+multiple times here. Under heavy concurrency the cap can truncate one execution and flip a
+gate — observed exactly once, **qid 584** (codebase_community), where 14-thread load pushed
+B's execution past 25 s (solo: 2–3 s; features a=b=1028 rows, dm=12, ncl=7 → F4 triggers
+correctly when uncrowded). The rule logic is deterministic; only timeout *observation* is
+machine/load-dependent. Mitigations: run on a quiet machine, and/or `--retry-timeouts`
+(serial retry for timed-out executions; default off).
+
+**Scoring vs reproducibility artifacts:** score **only** `submission_pred_v1146.json`
+(official two-tab, = 1146 = 74.71%); the internal single-tab `shipping_v16_predicted_sql.json`
+is the reproducibility reference — the official `package_sqls` parser will not split it
+correctly (0-score trap). See `data/README.md`.

@@ -21,18 +21,26 @@ _ap = argparse.ArgumentParser(description='Reproduce frozen v16 from repo data/ 
 _ap.add_argument('--dev-root', default=str(Path.home()/'bird_dev_check'/'dev_20240627'), help='unzipped official dev_20240627 (dev.json/dev.sql/dev_databases inside)')
 _ap.add_argument('--deepeye-b', default=None, help='path to upstream-published results/bird-dev/qwen3.6-27b.json (SHA 0d073da4...) from HKUSTDial/DeepEye-SQL @252ab45a (MIT)')
 _ap.add_argument('--out', default=str(DATA/'reproduce_out.json'))
+_ap.add_argument('--retry-timeouts', action='store_true', help='feature phase: retry executions that hit the 25 s cap once, serially (mitigates concurrency-induced boundary flips, e.g. qid 584 under 14-thread load; no-op on idle machines)')
 _args = _ap.parse_args()
 DEV = Path(_args.dev_root).expanduser()
 DEL = '\t----- bird -----'
 def n(s): return ' '.join(s.split(DEL)[0].split())
 dev = {str(d['question_id']): d for d in json.load(open(DEV/'dev.json'))}
 def pth(q): d = dev[q]; return str(DEV/'dev_databases'/d['db_id']/(d['db_id']+'.sqlite'))
-def rs(p, sql):
+def _rs_once(p, sql):
     def run():
         con = sqlite3.connect(f'file:{p}?mode=ro', uri=True, timeout=20); con.execute('PRAGMA query_only=ON')
         r = con.execute(sql).fetchall(); con.close(); return frozenset(tuple(x) for x in r)
     try: return func_timeout(25, run)
     except BaseException: return None
+
+def rs(p, sql):
+    r = _rs_once(p, sql)
+    if r is None and _args.retry_timeouts:
+        import time; time.sleep(1.0)
+        r = _rs_once(p, sql)
+    return r
 
 def main():
     import os
