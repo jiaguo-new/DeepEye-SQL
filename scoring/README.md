@@ -1,6 +1,6 @@
 # scoring/ — the only sanctioned scoring path (remediation P2-2)
 
-Verbatim official BIRD evaluator copy (`evaluation_ex.py`, SHA-256 `da1bbcd4530be83692d7c650c814ea9704bb710d0c953eb75d02ccb38233cf89`),
+Verbatim official BIRD evaluator copy (`evaluation_ex.py + evaluation_utils.py + process_sql.py (official trio, byte-identical copies)`, SHA-256 `da1bbcd4530be83692d7c650c814ea9704bb710d0c953eb75d02ccb38233cf89`),
 plus the pinned 2024-06-27 gold used for every published number in this repo:
 
 | input | SHA-256 |
