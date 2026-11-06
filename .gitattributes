@@ -1,0 +1,4 @@
+# Freeze artifact bytes: no EOL conversion (Windows checkouts must hash-match MANIFEST.sha256)
+data/** -text
+scoring/evaluation_ex.py -text
+*.json -text
