@@ -53,6 +53,18 @@ Official numbers below come from the official BIRD evaluator (serial runs, one i
     (11b) requires TRAIN-first validation, which needs the paraphraser model (GPU-locked) and
     ~900 gateway calls (7.5× the standing cost cap) → blocked on user decisions.
 
+## Test-time procedure accounting (round 46, measured, gold never in selection)
+The shipped 74.71% figure is a Dev corpus-augmented measurement: five Pool-P families
+(hermes/t75v4/ds/t75/bird_dev_check) and the D/E/F reference SQL (upstream published Dev file)
+do not exist for hidden Test questions. Rebuilding the procedure from generatable components only
+and measuring on Dev as a Test-time proxy: generatable-pool oracle 1233 (80.38%); max-support
+champion 1091 (71.12%); champion + frozen D/E/F **1109 (72.29%)** - the frozen rule chain nets
+**+18 on the degraded pool**, first measured transferability evidence for the rules-only
+leaderboard route. Two disclosed two-sided approximations: the proxy stage-1 omits the v10 TRAIN
+override (~+13), and the D/E/F rep slot uses the published Dev file rather than our own pipeline
+consensus (the generatable variant at Test time). Leaderboard expectation therefore anchors the
+70-73% band; the D2 rule (+1, pure generatable) transfers unchanged if adopted.
+
 ## Headroom accounting (unchanged, gold-free)
 - Pool oracle 1284; **131/141 headroom pairs already lost at stage-1 scoring**, only 10 lost in
   the rule chain (every shipped rule net-positive overall). 132 wrong questions have a pool
