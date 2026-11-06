@@ -63,3 +63,23 @@ with Pool P), so corroboration rules harvest mostly noise — joins the negative
 against the 29 dev labels (that would re-create the F6-style indirect fitting the audit flagged).
 Pool composition is not the bottleneck; selection precision is, and no observable AskData-mod
 proxy correlates with correctness beyond what rules D/E/F already exploit.
+
+## Positive measured evidence — Arctic-7B local generator, D2 count-zero rescue (2026-11-06)
+
+Second internal-lineage generator: public Arctic-Text2SQL-R1-7B-final, local
+GPU inference (transformers batch, chat-template + DDL prompt), reference-free.
+Applied only to the observable count-zero dead zone (champion result [[0]] with
+positive pool alternatives, E5 pool = 13 Dev questions), 8 samples/question.
+Pre-registered rule: >=2/8 samples agreeing on a non-empty positive-count bloc
+-> elect that bloc's earliest SQL. Train-domain validation first: fired 8,
+gain 3, **damage 0** (D2 pool); a sibling D1 pool (gain 1, damage 1) was
+rejected on that evidence. Dev result (official evaluator, same-session
+paired control at identical load): v16 = 1146 control vs v16+D2 = **1147
+(74.77%)** — one deterministic wrong->right switch (qid 765), one correctness
+no-op (405, bloc result-equivalent to champion), one neutral wrong->wrong
+(1441). Candidate artifact only (`candidate_v1147_arcticD2_pred.json`,
+sha256 d779831b...); not shipped — kit upgrade and model-allowlist extension
+await user decision. Generalization to a broader singleton-champion dead zone
+was attempted and **declined for insufficient Train coverage** (only 9 such
+questions; fired 3, all neutral) — pre-registration discipline: no
+Train-endorsed rule, no shipping.

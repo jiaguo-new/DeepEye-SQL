@@ -1,9 +1,9 @@
 {
  "_meta": "Official-evaluator recomputation ledger (2026-11-06). Each row: fresh run of verbatim evaluation_ex.py (SHA da1bbcd4...) against publisher dev_20240627 gold (dev.json 630272f2..., dev.sql 42087d70..., dev_databases.zip 8132aacd...), meta_time_out=30, on the scoring host. No cache/label paths exist in this procedure.",
- "gold_caution": "The 2026-11-06 audit recheck used a dev.json with SHA 9b4c38da..., which is NOT the current official publisher file: today's fresh download of the publisher dev.zip is byte-identical to the Nov-2 download (SHA cdd6d19f...) and contains dev.json 630272f2.... Example divergence: official qid 5 reads 'greater than 400' (gold->4); the 9b4c file's qid 5 reads 'under 400' (gold->0). Audit deltas on v19/DeepEye trace to that gold, not to scoring-cache mechanisms: all 82 'overcounted' qids are correct under the official gold with zero timeouts (max latency <3s), and all 11 'undercounted' qids are wrong \u2014 a clean mirror consistent with a gold revision.",
+ "gold_caution": "The 2026-11-06 audit recheck used a dev.json with SHA 9b4c38da..., which is NOT the current official publisher file: today's fresh download of the publisher dev.zip is byte-identical to the Nov-2 download (SHA cdd6d19f...) and contains dev.json 630272f2.... Example divergence: official qid 5 reads 'greater than 400' (gold->4); the 9b4c file's qid 5 reads 'under 400' (gold->0). Audit deltas on v19/DeepEye trace to that gold, not to scoring-cache mechanisms: all 82 'overcounted' qids are correct under the official gold with zero timeouts (max latency <3s), and all 11 'undercounted' qids are wrong — a clean mirror consistent with a gold revision.",
  "rows": [
   {
-   "artifact": "public v1 predicted_sql.json (SHA 0dede3dd\u2026)",
+   "artifact": "public v1 predicted_sql.json (SHA 0dede3dd…)",
    "claimed": "1016 (66.23%)",
    "official_recheck_20261106": "1000 (65.19%) 72.00/55.60/52.41 on current official gold",
    "status": "reexplained: record's own layer counts 925/465/144 prove it was scored on the PRE-2024-06-27 dev snapshot; current-gold value is 1000"
@@ -15,7 +15,7 @@
    "input_sha": "aae94afe7cd7892ab461f1e295aa138075fea2aaba198e1e022b25b8250ad396",
    "status": "verified on official gold; audit's 992 measured against non-publisher dev.json 9b4c38da",
    "fresh_run": "2026-11-06 10:57 serial log /tmp/p01/rescore.log; per-question run 1062/1063 (one 30s-boundary flip under sequential harness)",
-   "per_question_probe": "82/82 of the audit's 'overcounted' qids verified correct on current official gold, zero timeouts, max pred latency <3 s; their 11 'undercounted' all wrong \u2014 mirror consistent with annotation revision (qid5: current official text 'greater than 400', gold->4 == pred->4)"
+   "per_question_probe": "82/82 of the audit's 'overcounted' qids verified correct on current official gold, zero timeouts, max pred latency <3 s; their 11 'undercounted' all wrong — mirror consistent with annotation revision (qid5: current official text 'greater than 400', gold->4 == pred->4)"
   },
   {
    "artifact": "upstream DeepEye-SQL published predictions results/bird-dev/qwen3.6-27b.json (used as B in D/E/F rules)",
@@ -29,7 +29,7 @@
    "claimed": "1146 (74.71%)",
    "official_recheck_20261106": "1146 (74.71%) 79.46/68.97/62.76; also 1146 for two-tab export submission_pred_v1146.json (SHA f9f3322b...)",
    "input_sha": "510c91049fa27803d0cc19f3bf91a4c820a374664cfc146f44c996b9922061c3",
-   "status": "verified; file now distributed under data/ with MANIFEST (audit could not find it in repo/release \u2014 true for repo, resolved by this branch)"
+   "status": "verified; file now distributed under data/ with MANIFEST (audit could not find it in repo/release — true for repo, resolved by this branch)"
   },
   {
    "artifact": "v16-era intermediates 1092/1096 (v13-era pools)",
@@ -67,5 +67,15 @@
    "status": "negative evidence net -19",
    "claimed": "n/a (new measurements)"
   }
- ]
+ ],
+ "v16_arctic_d2_1147": {
+  "variant": "v16 + Arctic D2 count-zero rescue",
+  "official_correct": 1147,
+  "official_pct": 74.77,
+  "simple": 79.57,
+  "moderate": 68.97,
+  "challenging": 62.76,
+  "provenance": "Arctic-Text2SQL-R1-7B local samples on observable E5 pool (13q); rule pre-registered Train-validated (D2: fired 8 gain 3 damage 0); Dev fired 3 gain 1 neutral 1 no-op 1",
+  "status": "CANDIDATE - not shipped; kit upgrade pending user approval (model allowlist + disclosure)"
+ }
 }
